@@ -1,0 +1,22 @@
+angular
+  .module('theme.demos', [
+    'grocery',
+    'adminController',
+    'homeController',
+    'angularRestfulAuth',
+    //'oc.lazyLoad',
+    //'theme.demos.ui_components',
+    //'theme.demos.basic_tables',
+    //'theme.demos.boxed_layout',
+    //'theme.demos.horizontal_layout',
+    //'theme.demos.dashboard',
+    //'theme.demos.gallery',
+    //'theme.demos.editable_table',
+    //'theme.demos.panels',
+    //'theme.demos.registration_page',
+    'theme.demos.signup_page',
+    'theme.demos.not_found',
+    'theme.demos.error_page',
+    //'theme.demos.tasks',
+    //'theme.demos.mail',
+  ])

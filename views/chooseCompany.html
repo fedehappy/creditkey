@@ -1,0 +1,30 @@
+<div class="verticalcenter" ng-controller="SignupPageController">
+    <a href="#/"><img src="assets/img/logo-big-black.png" alt="Logo" class="brand" /></a>
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <h4 class="text-center" style="margin-bottom: 25px;">Scegli un'azienda</h4>
+            <form action="" class="form-horizontal row-border">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <select ng-model="selectedItem.id_azienda" class="form-control input-lg">
+                                <option value="">-- Seleziona azienda --</option>
+                                <option ng-repeat="adminAzienda in itemsForSelect.aziende" ng-value="adminAzienda.id_azienda">{{adminAzienda.nome}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="panel-footer">
+            <div class="pull-left">
+                <a href="#/login" class="btn btn-default"><i class="fa fa-arrow-left"></i> Indietro</a>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-success" ng-click="selectAzienda(selectedItem.id_azienda)">Vai <i class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

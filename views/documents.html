@@ -1,0 +1,135 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/">Dashboard</a></li>
+        <li class="active">Lista Documenti</li>
+    </ol>
+
+    <h1 class="hidden">Lista Documenti</h1>
+</div>
+
+<div class="container-fluid" ng-controller="AdminController">
+    <panel panel-class="panel-midnightblue" heading="Lista Documenti">
+
+        <div class="">
+            <a href="#/addItem?filter={{filter}}" style="margin-bottom: 10px" class="btn btn-primary btn-lg btn-block" ng-if="id_profilo != 1">
+                <span class="glyphicon glyphicon-plus"></span>
+                Richiedi Servizio
+            </a>
+
+
+            <table id="documetns" st-table="displayedCollection" st-safe-src="adminItems" class="ng-table table table-condensed table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th st-sort="stato" class="sortable">Stato</th>
+                    <th st-sort="nome_azienda" class="sortable">Soggetto</th>
+                    <th st-sort="data_add" class="sortable">Data</th>
+                    <th st-sort="tipo" class="sortable">Tipologia</th>
+                    <th>Documenti Originali</th>
+                    <th>Documenti Finali</th>
+                    <th>Elimina</th>
+                    <th>Note</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>
+                        <input st-search="nome_azienda" placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in displayedCollection" ng-if="!filter || row.tipo == filter">
+                    <td ng-if="row.stato != 1"><span class="btn btn-warning btn-block" title="in attesa di elaborazione" style="cursor:default;"><i class="glyphicon glyphicon-time"></i>In elaborazione</span></td>
+                    <td ng-if="row.stato == 1"><span class="btn btn-success btn-block" title="elaborato" style="cursor:default;"><i class="glyphicon glyphicon-ok"></i>Elaborato</span></td>
+                    <td>{{row.nome_azienda | uppercase}}</td>
+                    <td>{{row.data_add | date : "dd/MM/y"}}</td>
+                    <td>{{row.tipo}}</td>
+                    <td>
+                        <div>
+                            <a href="/ext/{{row.documento_1}}" target="_blank" ng-if="row.documento_1" class="btn btn-default btn-block"><i class="glyphicon glyphicon-download"></i>Visualizza originale</a>
+                        </div>
+                    </td>
+                    <td ng-if="row.stato != 1 && id_profilo == 1">
+                        <button type="button" class="btn btn-default btn-block" ng-click="uploadAdminFile('lg', row)">
+                            <i class="glyphicon glyphicon-pushpin" title="carica file"></i>Carica file
+                        </button>
+                    </td>
+                    <td ng-if="row.stato != 1 && id_profilo != 1"></td>
+                    <td ng-if="row.stato == 1">
+                        <a href="/ext/{{row.documento_2}}" class="btn btn-sky btn-block" target="_blank">
+                            <i class="glyphicon glyphicon-download" title="scarica documento"></i>Visualizza elaborato
+                        </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger center-block btn-block" ng-click="deleteConfirm(row)" style="">
+                            <i class="glyphicon glyphicon-trash"></i>Elimina
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-block btn-sky" title="note" ng-if="row.note && row.note != ''" ng-click="modalNote('lg', row)">
+                            <span class="glyphicon glyphicon-list-alt" style="padding-right: 0"></span>
+                        </button>
+                        <button type="button" class="btn btn-block btn-default" title="note" ng-if="!row.note || row.note == ''">
+                            <span class="glyphicon glyphicon-list-alt" style="padding-right: 0"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </panel>
+
+
+    <div>
+        <script type="text/ng-template" id="uploadAdminFile.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Allega Documento</h3>
+            </div>
+            <div class="modal-body">
+                <form ng-submit="clickOnUpload()" class="form-horizontal row-border">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="padding-top: 0">Upload File</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new">
+                                <div class="input-group">
+                                    <input type="file" file-model="myFile" required/>
+                                    <button class="ng-hide" id="myselector" ng-click="upload(); $event.stopPropagation();">upload me</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Note</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control autosize" ng-model="selectedItem.note">{{selectedItem.note}}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </script>
+        <script type="text/ng-template" id="modalNote.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Note</h3>
+            </div>
+            <div class="modal-body">
+                {{selectedItem.note}}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </script>
+    </div>
+</div>
+
+
+
+

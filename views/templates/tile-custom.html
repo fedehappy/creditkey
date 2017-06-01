@@ -1,0 +1,11 @@
+<a class="info-tiles tiles-{{item.color}}" ng-href="{{item.href}}">
+    <div class="tiles-body" style="height: 170px; padding-bottom: 10px">
+        <div style="position: absolute; right: 20px;" class=""><i style="font-size: 3em; color: rgba(0,0,0,0.4); z-index: 1" class="{{item.classes}}"></i></div>
+        <div style="font-weight: bold; font-size: 48px; padding-right: 1em; z-index: 10; position: absolute"  class="pull-left" ng-show="item.text">{{item.text}}</div>
+        <div class="pull-left" ng-show="!item.text" ng-transclude></div>
+    </div>
+    <div class="tiles-heading" style="font-size: 16px">
+        <div style="font-weight: normal" class="center-block">{{item.title}}<i style="margin-left: 10px" class="glyphicon glyphicon-circle-arrow-right"></i></div>
+        <div class="pull-right">{{item.titleBarInfo}}</div>
+    </div>
+</a>

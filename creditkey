@@ -1,0 +1,34 @@
+#
+# ihas
+#
+
+<VirtualHost *:80>
+        ServerAdmin lokeyngo.fede@gmail.com
+        ServerName  creditkey.it
+        ServerAlias creditkey.albasoftsolutions.it
+
+
+
+        # Indexes + Directory Root.
+        DirectoryIndex index.html index.htm index.php
+        DocumentRoot /var/www/creditkey/public_html
+        
+	 <Directory />
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+
+        <Directory /var/www/creditkey/>
+                Options -Indexes -FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                Allow from all
+        </Directory>
+
+
+        # Logfiles
+        # Ricordarsi di creare la directory
+        ErrorLog  /var/log/apache2/creditkey/error.log
+        CustomLog /var/log/apache2/creditkey/access.log combined
+
+</VirtualHost>

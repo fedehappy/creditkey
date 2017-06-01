@@ -1,0 +1,102 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/">Dashboard</a></li>
+        <li class="active">Aggiungi Anagrafica</li>
+    </ol>
+
+    <h1 class="hidden">Aggiungi Anagrafica</h1>
+</div>
+
+<div class="container-fluid" ng-controller="AdminItemController">
+    <panel panel-class="panel-midnightblue" heading="Aggiungi Anagrafica">
+        <form ng-submit="save(selectedItem)" class="form-horizontal row-border">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Ragione Sociale</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control input-lg" placeholder="inserisci ragione sociale" ng-model="selectedItem.nome" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Partita Iva</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+                        <input type="text" class="form-control input-lg" placeholder="inserisci partita iva" ng-model="selectedItem.partita_iva" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="text" class="form-control tooltips input-lg" data-trigger="hover" data-tooltip="Se si possiede solo la PEC inserirla anche qui" placeholder="inserisci email" ng-model="selectedItem.email" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">PEC</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-check"></i></span>
+                        <input type="text" class="form-control no-validate input-lg" placeholder="inserisci PEC" ng-model="selectedItem.pec">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Indirizzo</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                        <input type="text" class="form-control no-validate input-lg" ng-model="selectedItem.indirizzo" placeholder="es. via Roma 12, 35100 Padova PD, Italia" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" ng-model="selectedItem.indirizzo">
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Seleziona Utente</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <select ng-model="selectedItem.id_utente" class="form-control input-lg" required>
+                            <option value="">-- Seleziona utente --</option>
+                            <option ng-repeat="adminUser in itemsForSelect.utenti" ng-value="adminUser.id_utente">{{adminUser.nome}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <div class="col-sm-3 center-block">
+                </div>
+                <div class="col-sm-6 center-block">
+                    <a href="/utenti" type="button" class="btn btn-block btn-info btn-lg">Aggiungi Utente</a>
+                </div>
+            </div>-->
+            <!--<div class="form-group">
+                <label class="col-sm-3 control-label">Inserisci Logo</label>
+                <div class="col-sm-6">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="btn-toolbar">
+                            <button type="submit" class="btn-primary btn btn-block btn-lg">Aggiungi Anagrafica</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </panel>
+</div>

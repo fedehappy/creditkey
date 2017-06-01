@@ -1,0 +1,103 @@
+.strike{
+    position: relative;
+}
+.strike::after{
+    border-bottom: 3px solid black;
+    content: "";
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 40%;
+}
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th,
+.table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    padding: 10px;
+}
+
+
+/* TABELLA*/
+.ng-table th {
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.ng-table th.sortable {
+    cursor: pointer;
+}
+.ng-table th.sortable {
+    padding-right: 18px;
+    position: relative;
+}
+.ng-table th.sortable:after,
+.ng-table th.sortable:before {
+    content: "";
+    border-width: 0 4px 4px;
+    border-style: solid;
+    border-color: #000 transparent;
+    visibility: visible;
+    right: 5px;
+    top: 50%;
+    position: absolute;
+    opacity: .3;
+    margin-top: -4px;
+}
+.ng-table th.sortable:before {
+    margin-top: 2px;
+    border-bottom: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #000;
+}
+.ng-table th.sortable:hover:after,
+.ng-table th.sortable:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+.ng-table th.sortable.st-sort-descent,
+.ng-table th.sortable.st-sort-ascent {
+    background-color: rgba(141, 192, 219, 0.25);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+.ng-table th.sortable.st-sort-descent:after,
+.ng-table th.sortable.st-sort-ascent:after {
+    margin-top: -2px;
+}
+.ng-table th.sortable.st-sort-descent:before,
+.ng-table th.sortable.st-sort-ascent:before {
+    visibility: hidden;
+}
+.ng-table th.sortable.st-sort-ascent:after,
+.ng-table th.sortable.st-sort-ascent:hover:after {
+    visibility: visible;
+    filter: alpha(opacity=60);
+    -khtml-opacity: 0.6;
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+}
+.ng-table th.sortable.st-sort-descent:after {
+    border-bottom: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #000;
+    visibility: visible;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    filter: alpha(opacity=60);
+    -khtml-opacity: 0.6;
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+}
+
+/*tiles*/
+#documetns td .glyphicon{
+    padding-right: 10px;
+}
+
+.panel-loading{
+    z-index: 10000;
+}

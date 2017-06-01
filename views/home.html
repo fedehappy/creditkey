@@ -1,0 +1,15 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+    </ol>
+
+    <h1 class="hidden">Lista Associazioni</h1>
+</div>
+<div class="container-fluid" ng-controller="HomeController" ng-init="verifyAuth()">
+    <div class="col-xs-12">
+        <div class="" ng-repeat="row in homelinks">
+            <div class="col-lg-6">
+                <tile-custom data="row"></tile-custom>
+            </div>
+        </div>
+    </div>
+</div>

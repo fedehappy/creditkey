@@ -1,0 +1,79 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/">Dashboard</a></li>
+        <li class="active">Aggiungi Anagrafica</li>
+    </ol>
+</div>
+
+<div class="container-fluid">
+    <panel panel-class="panel-midnightblue" heading="Richiedi servizio">
+        <div class="text-center" style="background-color: transparent; margin-bottom: 50px">
+            <h1 style="color: darkgoldenrod" >
+                {{filter}}
+            </h1>
+        </div>
+        <form  class="form-horizontal row-border" name="groceryForm" ng-controller = "DocumentItemController" ng-submit="clickOnUpload()">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" style="padding-top: 0"></label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span><b>Qualora si dovessero allegare più documenti caricare un unico file zip contenente i medesimi.</b></span>
+                    </div>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" style="padding-top: 0">Upload File</label>
+                    <div class="col-sm-6">
+                        <div class="fileinput fileinput-new">
+                            <div class="input-group">
+                                <input type="file" file-model="myFile" required/>
+                                <button class="ng-hide" id="myselector" ng-click="save()">upload me</button>
+                                <span ng-if="filter == 'Analisi Di Bilancio'"><br><b>NB: Caricare ultimi due bilanci in formato CEE.</b> </span>
+                                <span ng-if="filter == 'Analisi Condizioni Bancarie'"><br><b>NB: Caricare gli estratti conto scalari trimestrali comprensivi della sezione “riepilogo competenze e spese”.</b></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Note</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control autosize" ng-model="selectedItem.note"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="col-sm-3 control-label" style="padding-top: 0" target="_blank" href="#/privacy">Accetta condizioni di privicy</a>
+                    <div class="col-sm-6">
+                        <input type="checkbox" ng-required="true"/>
+                    </div>
+
+                </div>
+                <!--<div class="form-group">
+                    <a class="col-sm-3 control-label" style="padding-top: 0" target="_blank" href="">Accetta condizioni contrattuali</a>
+                    <div class="col-sm-6">
+                        <input type="checkbox" ng-required="true"/>
+                    </div>
+
+                </div>-->
+
+            <!--<div class="form-group">
+                <input type="text" ng-pattern="/^[a-zA-Z]*$/" class="form-control" placeholder="Grocery Item" ng-model="groceryItem.itemName" required>
+            </div>-->
+
+            <div class="form-group">
+                <div class="center-block" style="margin-bottom: 10px">
+                    <button type="submit" class="btn btn-success btn-lg btn-block" >
+                        <span class="glyphicon glyphicon-pushpin"></span>
+                        Richiedi Servizio
+                    </button>
+                </div>
+                <div class="center-block">
+                    <a href="/" class="btn btn-danger btn-lg btn-block">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Annulla
+                    </a>
+                </div>
+            </div>
+        </form>
+    </panel>
+</div>
+

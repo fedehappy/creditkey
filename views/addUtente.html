@@ -1,0 +1,24 @@
+<form ng-submit="signup()" class="form-horizontal row-border">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Nome Utente</label>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control input-lg" placeholder="inserisci nome utente" ng-model="selectedItem.nome" required/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Email</label>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input type="text" class="form-control tooltips input-lg" data-trigger="hover" placeholder="inserisci email" ng-model="selectedItem.email" required/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+</form>

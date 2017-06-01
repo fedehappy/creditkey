@@ -1,0 +1,134 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/">Dashboard</a></li>
+        <li class="active">Lista Documenti</li>
+    </ol>
+
+    <h1 class="hidden">Lista Aziende</h1>
+</div>
+
+<div class="container-fluid" ng-controller="AdminController">
+    <panel panel-class="panel-midnightblue" heading="Lista Aziende">
+
+        <div class="">
+            <a href="#/addAnagrafica" style="margin-bottom: 10px" class="btn btn-primary btn-lg btn-block">
+                <span class="glyphicon glyphicon-plus"></span>
+                Aggiungi Azienda
+            </a>
+
+
+            <table st-table="displayedCollection" st-safe-src="adminItems" class="ng-table table table-condensed table-bordered table-striped">
+                <thead>
+                <tr>
+                    <!--<th>Logo</th>-->
+                    <th st-sort="nome" class="sortable">Azienda</th>
+                    <th st-sort="data_add" class="sortable">Data</th>
+                    <th st-sort="email" class="sortable">Email</th>
+                    <th st-sort="pec" class="sortable">Pec</th>
+                    <th st-sort="indirizzo" class="sortable">Indirizzo</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>
+                        <input st-search="nome" placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+                        <input st-search="email" placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th>
+                        <input st-search="pec" placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th>
+                        <input st-search="indirizzo" placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <!--<td><img src="{{row.logo}}" width="35px"></td>-->
+                    <td>{{row.nome | uppercase}}</td>
+                    <td>{{row.data_add | date : "dd/MM/y"}}</td>
+                    <td>{{row.email}}</td>
+                    <td>{{row.pec}}</td>
+                    <td>{{row.indirizzo}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger pull-right" ng-click="deleteConfirm(row)" style="margin-right: 10px">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <button ng-controller="ModalsNewUserController" type="button" class="btn btn-default pull-right" ng-click="editItemAzienda('lg', row)" style="margin-right: 10px">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </panel>
+</div>
+
+
+<script type="text/ng-template" id="modalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Modifica Anzienda</h3>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="save()" class="form-horizontal row-border">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Ragione Sociale</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control input-lg" placeholder="inserisci ragione sociale" ng-model="selectedItem.nome" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Partita Iva</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+                        <input type="text" class="form-control input-lg" placeholder="inserisci partita iva" ng-model="selectedItem.partita_iva" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="text" class="form-control tooltips input-lg" data-trigger="hover" data-tooltip="Se si possiede solo la PEC inserirla anche qui" placeholder="inserisci email" ng-model="selectedItem.email" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">PEC</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-check"></i></span>
+                        <input type="text" class="form-control no-validate input-lg" placeholder="inserisci PEC" ng-model="selectedItem.pec">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Indirizzo</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                        <input type="text" class="form-control no-validate input-lg" placeholder="es. via Roma 12, 35100 Padova PD, Italia" ng-model="selectedItem.indirizzo">
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" ng-click="cancel()">Annulla</button>
+                <button type="submit" class="btn btn-success">Salva</button>
+            </div>
+        </form>
+    </div>
+
+</script>
+

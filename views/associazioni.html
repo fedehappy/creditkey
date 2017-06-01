@@ -1,0 +1,97 @@
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/">Dashboard</a></li>
+        <li class="active">Lista Associazioni</li>
+    </ol>
+
+    <h1 class="hidden">Lista Associazioni</h1>
+</div>
+
+<div class="container-fluid" ng-controller="AdminController">
+    <panel panel-class="panel-midnightblue" heading="Lista Associazioni">
+
+        <div class="">
+            <div ng-controller="ModalsNewUserController">
+                <button style="margin-bottom: 10px" class="btn btn-primary btn-lg btn-block" ng-click="openNewAssociazione('lg')">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Aggiungi Associazione
+                </button>
+                <script type="text/ng-template" id="modalContent.html">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Associa un utente a un'azienda</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form ng-submit="save()" class="form-horizontal row-border">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Seleziona Azienda</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select ng-model="selectedItem.id_azienda" class="form-control input-lg" required>
+                                            <option value="">-- Seleziona azienda --</option>
+                                            <option ng-repeat="adminAzienda in itemsForSelect.aziende" ng-value="adminAzienda.id_azienda">{{adminAzienda.nome}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Seleziona Utente</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select ng-model="selectedItem.id_utente" class="form-control input-lg" required>
+                                            <option value="">-- Seleziona utente --</option>
+                                            <option ng-repeat="adminUser in itemsForSelect.utenti" ng-value="adminUser.id_utente">{{adminUser.nome}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-warning" ng-click="cancel()">Annulla</button>
+                                <button type="submit" class="btn btn-success">Salva</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </script>
+            </div>
+
+            <p ng-show="selected"><span class="label label-default">{{ selected }}</span> selected from modal.</p>
+            <table st-table="displayedCollection" st-safe-src="adminItems" class="ng-table table table-condensed table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th st-sort="nome_azienda" class="sortable">Azienda</th>
+                    <th st-sort="nome_utente" class="sortable">Nome Utente</th>
+                    <th st-sort="data_add" class="sortable">Data Aggiunta</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>
+                        <input st-search="nome_azienda" placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th>
+                        <input st-search="nome_utente" placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th>
+
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.nome_azienda | uppercase}}</td>
+                    <td>{{row.nome_utente | uppercase}}</td>
+                    <td>{{row.data_add | date : "dd/MM/y"}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger pull-right" ng-click="deleteConfirm(row)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </panel>
+</div>
+

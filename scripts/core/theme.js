@@ -1,0 +1,22 @@
+angular
+  .module('theme', [
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngRoute',
+    'ngStorage',
+    'ngAnimate',
+    'ui.sortable',
+    'easypiechart',
+    'NgSwitchery',
+    'sun.scrollable',
+    'ui.bootstrap',
+    'ui.select',
+    'smart-table',
+    'theme.core.templates',
+    //'theme.core.template_overrides',
+    'theme.core.panels',
+    'theme.core.directives',
+    'theme.core.main_controller',
+    'theme.core.navigation_controller',
+  ]);
